@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Glow lines === */
+.glow-lines path {
+  stroke: #888;
+  stroke-width: 2;
+  animation: glowStroke 2s infinite ease-in-out;
+}
+.glow-lines circle {
+  fill: #888;
+  animation: glowDot 2s infinite ease-in-out;
+}
+@keyframes glowStroke {
+  0%, 100% { stroke: #888; }
+  50% { stroke: #f87171; }
+}
+@keyframes glowDot {
+  0%, 100% { fill: #888; }
+  50% { fill: #f87171; }
+}
+
+/* === Animation bouton Commencer === */
+@keyframes pulseButton {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+.animate-soft-bounce {
+  animation: pulseButton 2.5s infinite;
+}
+
+/* === Ligne rouge animée en bas === */
+@keyframes bottomLine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.animate-bottom-line::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: #dc2626;
+  animation: bottomLine 4s linear infinite;
+}
+
+/* === Glow noir === */
+@keyframes glowBlack {
+  0%, 100% {
+    box-shadow: 0 0 0px #000000;
+  }
+  50% {
+    box-shadow: 0 0 15px #111111;
+  }
+}
+
+/* === Marquee : effet lumineux noir + texte qui défile === */
+.marquee-container {
+  width: 100%;
+  height: 32px;
+  overflow: hidden;
+  background-color: #e5e7eb; /* gris clair */
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  animation: glowBlack 2s ease-in-out infinite;
+}
+
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  color: #1f2937;
+  transform: translateX(-100%);
+  animation: scroll-single 15s linear infinite;
+}
+
+@keyframes scroll-single {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
